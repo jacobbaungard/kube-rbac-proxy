@@ -8,14 +8,14 @@ metadata:
     build.appstudio.redhat.com/target_branch: '{{target_branch}}'
     pipelinesascode.tekton.dev/cancel-in-progress: "true"
     pipelinesascode.tekton.dev/max-keep-runs: "3"
-    pipelinesascode.tekton.dev/on-cel-expression: event == "pull_request" &&
-      (target_branch == "backplane-2.11" || target_branch == "release-2.16")
+    pipelinesascode.tekton.dev/on-cel-expression: event == "pull_request" && target_branch
+      == "release-2.17"
   creationTimestamp: null
   labels:
-    appstudio.openshift.io/application: release-mce-211
-    appstudio.openshift.io/component: kube-rbac-proxy-mce-211
+    appstudio.openshift.io/application: release-acm-217
+    appstudio.openshift.io/component: kube-rbac-proxy-acm-217
     pipelines.appstudio.openshift.io/type: build
-  name: kube-rbac-proxy-mce-211-on-pull-request
+  name: kube-rbac-proxy-acm-217-on-pull-request
   namespace: crt-redhat-acm-tenant
 spec:
   params:
@@ -24,7 +24,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/crt-redhat-acm-tenant/kube-rbac-proxy-mce-211:on-pr-{{revision}}
+    value: quay.io/redhat-user-workloads/crt-redhat-acm-tenant/kube-rbac-proxy-acm-217:on-pr-{{revision}}
   - name: image-expires-after
     value: 5d
   - name: build-platforms
@@ -42,8 +42,8 @@ spec:
     value: "true"
   - name: build-args
     value:
-    - IMAGE_NAME=multicluster-engine/kube-rbac-proxy-mce-rhel9
-    - CPE_LABEL=cpe:/a:redhat:multicluster_engine:2.11::el9
+    - IMAGE_NAME=rhacm2/kube-rbac-proxy-rhel9
+    - CPE_LABEL=cpe:/a:redhat:acm:2.17::el9
   pipelineRef:
     resolver: git
     params:
@@ -52,9 +52,9 @@ spec:
       - name: revision
         value: main
       - name: pathInRepo
-        value: pipelines/common_mce_2.11.yaml
+        value: pipelines/common.yaml
   taskRunTemplate:
-    serviceAccountName: build-pipeline-kube-rbac-proxy-mce-211
+    serviceAccountName: build-pipeline-kube-rbac-proxy-acm-217
   workspaces:
   - name: git-auth
     secret:
