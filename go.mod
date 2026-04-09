@@ -14,7 +14,7 @@ require (
 	k8s.io/apiserver v0.19.2
 	k8s.io/client-go v0.19.2
 	k8s.io/component-base v0.19.2
-	k8s.io/klog/v2 v2.140.0
+	k8s.io/klog/v2 v2.130.1
 )
 
 require (
@@ -58,7 +58,7 @@ require (
 	golang.org/x/text v0.33.0 // indirect
 	golang.org/x/time v0.0.0-20191024005414-555d28b269f0 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20260120221211-b8f7ae30c516 // indirect
-	google.golang.org/grpc v1.80.0 // indirect
+	google.golang.org/grpc v1.79.3 // indirect
 	google.golang.org/protobuf v1.36.11 // indirect
 	gopkg.in/go-jose/go-jose.v2 v2.6.3 // indirect
 	gopkg.in/inf.v0 v0.9.1 // indirect
