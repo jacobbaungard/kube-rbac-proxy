@@ -8,13 +8,13 @@ metadata:
     pipelinesascode.tekton.dev/cancel-in-progress: "false"
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-cel-expression: event == "push" && target_branch
-      == "backplane-2.17"
+      == "release-5.0"
   creationTimestamp: null
   labels:
-    appstudio.openshift.io/application: release-mce-217
-    appstudio.openshift.io/component: kube-rbac-proxy-mce-217
+    appstudio.openshift.io/application: release-acm-50
+    appstudio.openshift.io/component: kube-rbac-proxy-acm-50
     pipelines.appstudio.openshift.io/type: build
-  name: kube-rbac-proxy-mce-217-on-push
+  name: kube-rbac-proxy-acm-50-on-push
   namespace: crt-redhat-acm-tenant
 spec:
   params:
@@ -23,7 +23,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/crt-redhat-acm-tenant/kube-rbac-proxy-mce-217:{{revision}}
+    value: quay.io/redhat-user-workloads/crt-redhat-acm-tenant/kube-rbac-proxy-acm-50:{{revision}}
   - name: build-platforms
     value:
     - linux/x86_64
@@ -42,8 +42,8 @@ spec:
     value: "true"
   - name: build-args
     value:
-    - IMAGE_NAME=multicluster-engine/kube-rbac-proxy-mce-rhel9
-    - CPE_LABEL=cpe:/a:redhat:multicluster_engine:2.17::el9
+    - IMAGE_NAME=rhacm2/kube-rbac-proxy-rhel9
+    - CPE_LABEL=cpe:/a:redhat:acm:5.0::el9
   pipelineRef:
     resolver: git
     params:
@@ -54,7 +54,7 @@ spec:
       - name: pathInRepo
         value: pipelines/common.yaml
   taskRunTemplate:
-    serviceAccountName: build-pipeline-kube-rbac-proxy-mce-217
+    serviceAccountName: build-pipeline-kube-rbac-proxy-acm-50
   workspaces:
   - name: git-auth
     secret:
